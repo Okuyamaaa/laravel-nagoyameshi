@@ -2,7 +2,9 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,10 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function(){
-    Route::get('home', [Admin\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
+    Route::get('home', [HomeController::class, 'index'])->name('home');
+
+         Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+    
 });
