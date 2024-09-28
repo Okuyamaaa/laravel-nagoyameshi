@@ -14,8 +14,7 @@ class UserIndexTest extends TestCase
      * A basic feature test example.
      */
 
-    // 会員一覧ページ
-    // 1.未ログインのユーザーは管理者側の会員一覧ページにアクセスできない
+ 
     public function test_guest_cannot_access_admin_users_index()
     {
         $response = $this->get(route('admin.users.index'));
@@ -23,7 +22,7 @@ class UserIndexTest extends TestCase
         $response->assertRedirect(route('admin.login'));
     }
 
-    // 2.ログイン済みの一般ユーザーは管理者側の会員一覧ページにアクセスできない
+  
     public function test_user_cannot_access_admin_users_index()
     {
         $user = User::factory()->create();
@@ -33,7 +32,7 @@ class UserIndexTest extends TestCase
         $response->assertRedirect(route('admin.login'));
     }
 
-    // 3.ログイン済みの管理者は管理者側の会員一覧ページにアクセスできる
+   
     public function test_adminUser_can_access_admin_users_index()
     {
         $adminUser = Admin::factory()->create();
@@ -43,8 +42,7 @@ class UserIndexTest extends TestCase
         $response->assertStatus(200);
     }
 
-    // 会員詳細ページ
-    // 1.未ログインのユーザーは管理者側の会員詳細ページにアクセスできない
+  
     public function test_guest_cannot_access_admin_users_show()
     {
         $user = User::factory()->create();
@@ -54,7 +52,7 @@ class UserIndexTest extends TestCase
         $response->assertRedirect(route('admin.login'));
     }
 
-    // 2.ログイン済みの一般ユーザーは管理者側の会員詳細ページにアクセスできない
+    
     public function test_user_cannot_access_admin_users_show()
     {
         $user = User::factory()->create();
@@ -64,7 +62,7 @@ class UserIndexTest extends TestCase
         $response->assertRedirect(route('admin.login'));
     }
 
-    // 3.ログイン済みの管理者は管理者側の会員詳細ページにアクセスできる
+    
     public function test_adminUser_can_access_admin_users_show()
     {
         $user = User::factory()->create();

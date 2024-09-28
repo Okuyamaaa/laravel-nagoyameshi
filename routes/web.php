@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RestaurantController;
 
 
 /*
@@ -28,7 +29,16 @@ require __DIR__.'/auth.php';
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
     Route::get('home', [HomeController::class, 'index'])->name('home');
 
-         Route::get('users', [UserController::class, 'index'])->name('users.index');
-        Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+
+    Route::get('/admin/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
+    Route::get('/admin/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
+    Route::get('restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
+    Route::post('/admin/restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
+    Route::post('restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
+    Route::put('restaurants', [RestaurantController::class, 'update'])->name('restaurants.update');
+    Route::delete('restaurants', [RestaurantController::class, 'destroy'])->name('restaurants.destroy');
+  
     
 });
