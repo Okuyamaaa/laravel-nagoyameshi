@@ -34,11 +34,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
 });
     
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
-    Route::get('/admin/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
-    Route::get('/admin/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
-    Route::get('restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
-    Route::post('/admin/restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
-    Route::get('restaurants/{restaurant}', [RestaurantController::class, 'edit'])->name('restaurants.edit');
-    Route::patch('restaurants', [RestaurantController::class, 'update'])->name('restaurants.update');
-    Route::delete('restaurants/{restaurant}', [RestaurantController::class, 'destroy'])->name('restaurants.destroy');
+    // Route::get('/admin/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
+    // Route::get('/admin/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
+    // Route::get('restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
+    // Route::post('/admin/restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
+    // Route::get('restaurants/{restaurant}', [RestaurantController::class, 'edit'])->name('restaurants.edit');
+    // Route::patch('restaurants', [RestaurantController::class, 'update'])->name('restaurants.update');
+    // Route::delete('restaurants/{restaurant}', [RestaurantController::class, 'destroy'])->name('restaurants.destroy');
+    Route::resource('restaurants', RestaurantController::class);
 });
