@@ -51,7 +51,7 @@
 
                     <!-- 選択された画像の表示場所 -->
                     @if ($restaurant->image !== '')
-                        <div class="row" id="imagePreview"><img src="data:image/jpeg;base64,{{ base64_encode($restaurant->image) }}" alt="Restaurant Image" class="mb-3"></div>
+                        <div class="row" id="imagePreview"><img src="{{ asset('storage/'. $restaurant->image) }}" alt="{{ $restaurant->name }}" class="mb-3"></div>
                     @else
                         <div class="row" id="imagePreview"></div>
                     @endif

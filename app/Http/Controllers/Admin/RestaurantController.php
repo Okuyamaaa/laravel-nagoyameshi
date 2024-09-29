@@ -50,7 +50,7 @@ class RestaurantController extends Controller
         
     $restaurant = new Restaurant();
     $restaurant->name = $request->input('name');
-    $restaurant->image = $request->file('image')->store('storage/restaurants/');
+    $restaurant->image = $request->file('image')->store('restaurants', 'public');
     $restaurant->description = $request->input('description');
     $restaurant->lowest_price = $request->input('lowest_price');
     $restaurant->highest_price = $request->input('highest_price');
@@ -73,7 +73,7 @@ class RestaurantController extends Controller
 
     public function update(Request $request, Restaurant $restaurant)
 {
-
+       
         $request->validate([
             'name' => 'required',
             'image' =>  'image|max:2048',
@@ -87,7 +87,7 @@ class RestaurantController extends Controller
             'seating_capacity' => 'required|numeric|min:0'
 ]);
         if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('storage/restaurants/');
+            $image = $request->file('image')->store('restaurants', 'public');
         } else {
             $image =  $restaurant->image;
         }
