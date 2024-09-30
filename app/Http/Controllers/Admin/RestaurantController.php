@@ -64,6 +64,10 @@ class RestaurantController extends Controller
 
     $restaurant->save();
     
+  
+    $category_ids = array_filter($request->input('category_ids'));
+    $restaurant->categories()->sync($category_ids);
+
     return to_route('admin.restaurants.store')->with('flash_message', '店舗を登録しました。');
     }
 
