@@ -56,7 +56,12 @@ class RestaurantController extends Controller
         
     $restaurant = new Restaurant();
     $restaurant->name = $request->input('name');
-    $restaurant->image = $request->file('image')->store('restaurants', 'public');
+    
+    $image = '';
+    if ($request->hasFile('image')) {
+        $image = $request->file('image')->store('restaurants', 'public');
+    }
+    $restaurant->image = $image;
     $restaurant->description = $request->input('description');
     $restaurant->lowest_price = $request->input('lowest_price');
     $restaurant->highest_price = $request->input('highest_price');

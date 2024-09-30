@@ -13,7 +13,7 @@ use Tests\TestCase;
 class RestaurantTest extends TestCase
 {
 
- 
+ use RefreshDatabase;
     /**
      * A basic feature test example.
      */
@@ -331,7 +331,7 @@ class RestaurantTest extends TestCase
 
     public function test_guest_cannot_update_restaurants(){
 
-      
+        $old_restaurant = Restaurant::factory()->create();
 
         $categoryIds = [];
         for($i=1; $i<=3; $i++){
@@ -351,11 +351,11 @@ class RestaurantTest extends TestCase
                 'address' => 'テスト',
                 'opening_time' =>  '10:00',
                 'closing_time' =>  '20:00',
-                'seating_capacity' => 50,
+                'seating_capacity' => 100,
                 'category_ids' => $categoryIds
             ];
 
-            $response = $this->post(route('admin.restaurants.update'), $restaurant);
+            $response = $this->patch(route('admin.restaurants.update', $old_restaurant), $restaurant);
 
             unset($restaurant['category_ids']);
             $this->assertDatabaseMissing('restaurants', $restaurant);
@@ -369,8 +369,9 @@ class RestaurantTest extends TestCase
 
     public function test_user_cannot_update_restaurants(){
 
+        $old_restaurant = Restaurant::factory()->create();
         $user=User::factory()->create();
-        $this->actingAs($user);
+       
 
         $categoryIds = [];
         for($i=1; $i<=3; $i++){
@@ -390,11 +391,11 @@ class RestaurantTest extends TestCase
                 'address' => 'テスト',
                 'opening_time' =>  '10:00',
                 'closing_time' =>  '20:00',
-                'seating_capacity' => 50,
+                'seating_capacity' => 100,
                 'category_ids' => $categoryIds
             ];
 
-            $response = $this->post(route('admin.restaurants.update'), $restaurant);
+            $response = $this->actingAs($user)->patch(route('admin.restaurants.update', $old_restaurant), $restaurant);
 
             unset($restaurant['category_ids']);
             $this->assertDatabaseMissing('restaurants', $restaurant);
@@ -408,8 +409,9 @@ class RestaurantTest extends TestCase
 
     public function test_admin_can_update_restaurants(){
 
+        $old_restaurant = Restaurant::factory()->create();
+
         $admin=Admin::factory()->create();
-        $this->actingAs($admin, 'admin');
 
         $categoryIds = [];
         for($i=1; $i<=3; $i++){
@@ -433,7 +435,7 @@ class RestaurantTest extends TestCase
                 'category_ids' => $categoryIds
             ];
 
-            $response = $this->post(route('admin.restaurants.update'), $restaurant);
+            $response = $this->actingAs($admin, 'admin')->patch(route('admin.restaurants.update', $old_restaurant), $restaurant);
 
             unset($restaurant['category_ids']);
             $this->assertDatabaseHas('restaurants', $restaurant);

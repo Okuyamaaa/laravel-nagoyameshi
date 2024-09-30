@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
 });
     
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
-    Route::resource('restaurants', 'Admin\RestaurantController');
+    Route::resource('restaurants', RestaurantController::class);
     // Route::get('/admin/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
     // Route::get('/admin/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
     // Route::get('restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
