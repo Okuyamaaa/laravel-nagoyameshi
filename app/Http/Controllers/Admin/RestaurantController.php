@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Restaurant;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,8 @@ class RestaurantController extends Controller
             $total = $restaurants->total();
         }
 
+        
+
         return view('admin.restaurants.index', compact('restaurants', 'total', 'keyword'));
     }
 
@@ -27,7 +30,10 @@ class RestaurantController extends Controller
     }
 
     public function create(){
-        return view('admin.restaurants.create');
+
+        $categories = Category::all();
+
+        return view('admin.restaurants.create', compact('categories'));
     }
 
     public function store(Request $request){
@@ -60,10 +66,8 @@ class RestaurantController extends Controller
     $restaurant->closing_time = $request->input('closing_time');
     $restaurant->seating_capacity = $request->input('seating_capacity');
 
-    
-
     $restaurant->save();
-    
+
   
     $category_ids = array_filter($request->input('category_ids'));
     $restaurant->categories()->sync($category_ids);
@@ -72,7 +76,12 @@ class RestaurantController extends Controller
     }
 
     public function edit(Restaurant $restaurant){
-        return view('admin.restaurants.edit', compact('restaurant'));
+
+        $categories = Category::all();
+
+        $category_ids = $restaurant->categories->pluck('id')->toArray();
+
+        return view('admin.restaurants.edit', compact('restaurant', 'categories', 'category_ids'));
     }
 
     public function update(Request $request, Restaurant $restaurant)
@@ -113,6 +122,9 @@ class RestaurantController extends Controller
 
 
         $restaurant->update();
+
+        $category_ids = array_filter($request->input('category_ids'));
+        $restaurant->categories()->sync($category_ids);
 
        
 

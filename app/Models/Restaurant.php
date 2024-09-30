@@ -24,4 +24,10 @@ class Restaurant extends Authenticatable
         'closing_time',
         'seating_capacity',
     ];
+
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
+
+
 }
