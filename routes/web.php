@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\TermController;
 
 
 /*
@@ -44,4 +46,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
     // Route::patch('restaurants', [RestaurantController::class, 'update'])->name('restaurants.update');
     // Route::delete('restaurants', [RestaurantController::class, 'destroy'])->name('restaurants.destroy');
     Route::resource('categories', CategoryController::class);
+    Route::resource('company', CompanyController::class);
+    Route::resource('terms', TermController::class);
 });
