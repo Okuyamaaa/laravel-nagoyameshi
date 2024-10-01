@@ -26,7 +26,11 @@ class Restaurant extends Authenticatable
     ];
 
     public function categories(){
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->withtimestamps();
+    }
+
+    public function regular_holidays(){
+        return $this->belongsToMany(RegularHoliday::class)->withtimestamps();
     }
 
 

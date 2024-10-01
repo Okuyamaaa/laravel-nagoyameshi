@@ -8,19 +8,18 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 
-class Category extends Authenticatable
-
+class RegularHoliday extends Authenticatable
 {
     use HasFactory;
 
-    
     protected $fillable = [
-        'name',
+        'day',
+        'day_index',
     ];
 
     public function restaurants(){
         return $this->belongsToMany(Restaurant::class)->withtimestamps();
     }
 
-}
 
+}
