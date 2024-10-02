@@ -1,6 +1,6 @@
 <footer class="bg-light">
     <div class="d-flex justify-content-center nagoyameshi-footer-logo">
-        <a class="navbar-brand nagoyameshi-app-name" href="{{ url('home') }}">
+        <a class="navbar-brand nagoyameshi-app-name" href="{{ url('/home') }}">
             <div class="d-flex align-items-center">
                 <img class="nagoyameshi-logo me-1" src ="{{ asset('/images/logo.svg') }}" alt="nagoyameshi">
                 NAGOYAMESHI
