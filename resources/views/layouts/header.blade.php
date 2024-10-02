@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container nagoyameshi-container">
-        <a class="navbar-brand nagoyameshi-app-name" href="{{ url('/home') }}">
+        <a class="navbar-brand nagoyameshi-app-name" href="{{ url('/') }}">
             <div class="d-flex align-items-center">
                 <img class="nagoyameshi-logo me-1" src ="{{ asset('/images/logo.svg') }}" alt="nagoyameshi">
                 NAGOYAMESHI
@@ -64,7 +64,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">会員情報</a>
+                                <a class="dropdown-item" href="{{ route('user.index') }}">会員情報</a>
                                 <a class="dropdown-item" href="#">有料プラン登録</a>
 
                                 <div class="dropdown-divider"></div>
