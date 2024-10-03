@@ -60,4 +60,9 @@ if ($request->has('select_sort')) {
 
     return view('restaurants.index', compact('restaurants', 'keyword', 'price', 'sorts', 'sorted', 'total', 'categories', 'category_id'));
 }
+
+public function show(Restaurant $restaurant){
+    
+    return view('restaurants.show', compact('restaurant'));
+}
 }
