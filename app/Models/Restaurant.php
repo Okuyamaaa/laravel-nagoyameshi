@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Kyslik\ColumnSortable\Sortable;
 
 
 class Restaurant extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
     protected $fillable = [
         'name',

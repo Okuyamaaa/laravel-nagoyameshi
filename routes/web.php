@@ -4,12 +4,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 // use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\RestaurantController;
+// use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\TermController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RestaurantController;
 
 
 /*
@@ -54,7 +55,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
 
 Route::group(['middleware' => 'guest:admin'], function () {
     Route::get('home',[HomeController::class, 'index'])->name('/home');
+    Route::resource('restaurants', RestaurantController::class);
     Route::group(['middleware' => ['auth', 'verified']], function () {
          Route::resource('user', UserController::class)->only(['index', 'edit', 'update']);
+        
    });
 });
