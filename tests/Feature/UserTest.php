@@ -21,7 +21,7 @@ class UserTest extends TestCase
 
         $response = $this->get(route('user.index'));
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
     }
 
     public function test_user_can_access_index(){
@@ -47,7 +47,7 @@ class UserTest extends TestCase
 
         $response=$this->get(route('user.edit', ['user'=>$user->id]));
 
-        $response->assertRedirect('/user');
+        $response->assertRedirect(route('login'));
 
     }
 

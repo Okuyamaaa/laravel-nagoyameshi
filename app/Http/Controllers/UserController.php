@@ -37,7 +37,7 @@ class UserController extends Controller
             
         return view('user.edit', compact('user'));
         }else{
-            return to_route('user.index')->with('error_message', '不正なアクセスです。');
+            return redirect()->route('user.index')->with('error_message', '不正なアクセスです。');
         }
     }
     public function update(Request $request, User $user){
