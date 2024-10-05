@@ -34,5 +34,14 @@ class Restaurant extends Authenticatable
         return $this->belongsToMany(RegularHoliday::class)->withtimestamps();
     }
 
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
+    public function ratingSortable($query, $direction) {
+        return $query->withAvg('reviews', 'score')->orderBy('reviews_avg_score', $direction);
+    }
+    
+
 
 }

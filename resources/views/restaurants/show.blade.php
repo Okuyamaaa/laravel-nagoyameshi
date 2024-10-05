@@ -13,6 +13,10 @@
                 </nav>
 
                 <h1 class="mb-2 text-center">{{ $restaurant->name }}</h1>
+                <p class="text-center">
+                    <span class="nagoyameshi-star-rating me-1" data-rate="{{ round($restaurant->reviews->avg('score') * 2) / 2 }}"></span>
+                    {{ number_format(round($restaurant->reviews->avg('score'), 2), 2) }}（{{ $restaurant->reviews->count() }}件）
+                </p>
 
                 @if (session('flash_message'))
                     <div class="alert alert-info" role="alert">
@@ -28,13 +32,13 @@
                         <a class="nav-link link-dark" href="#">予約</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-dark" href="#">レビュー</a>
+                        <a class="nav-link link-dark" href="{{ route('restaurants.reviews.index', $restaurant) }}">レビュー</a>
                     </li>
                 </ul>
 
                 <div class="mb-2">
                     @if ($restaurant->image !== '')
-                        <img src="{{ asset('storage/restaurants/' . $restaurant->image) }}" class="w-100">
+                        <img src="{{ asset('storage/' . $restaurant->image) }}" class="w-100">
                     @else
                         <img src="{{ asset('/images/no_image.jpg') }}" class="w-100">
                     @endif
