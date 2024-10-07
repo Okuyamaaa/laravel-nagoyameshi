@@ -41,7 +41,12 @@ class Restaurant extends Authenticatable
     public function ratingSortable($query, $direction) {
         return $query->withAvg('reviews', 'score')->orderBy('reviews_avg_score', $direction);
     }
-    
+    public function reservations(){
+        return $this->hasMany(Reserdvation::class);
+    }
 
+    public function popularSortable($query, $direction) {
+        return $query->withCount('reservations')->orderBy('reservations_count', $direction);
 
+}
 }
