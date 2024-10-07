@@ -6,8 +6,8 @@ use App\Http\Controllers\Admin;
 // use App\Http\Controllers\Admin\UserController;
 // use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\CompanyController;
-use App\Http\Controllers\Admin\TermController;
+// use App\Http\Controllers\Admin\CompanyController;
+// use App\Http\Controllers\Admin\TermController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RestaurantController;
@@ -15,6 +15,8 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\TermController;
 use App\Http\Middleware\Subscribed;
 
 /*
@@ -115,4 +117,9 @@ Route::middleware(['guest:admin', 'auth', 'verified', 'subscribed'])->group(func
     Route::get('favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::delete('favorites/{restaurant_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+});
+
+Route::middleware(['guest:admin'])->group(function(){
+    Route::get('company', [CompanyController::class, 'index'])->name('company.index');
+    Route::get('terms', [TermController::class, 'index'])->name('terms.index');
 });
