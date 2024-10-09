@@ -112,7 +112,7 @@ class RestaurantController extends Controller
             'seating_capacity' => 'required|numeric|min:0'
 ]);
         if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('storage/restaurants/', 'public');
+            $image = $request->file('image')->store('restaurants', 'public');
         } else {
             $image =  $restaurant->image;
         }
