@@ -12,7 +12,7 @@ class CategoryController extends Controller
         $keyword = $request->keyword;
 
         if($keyword !== null){
-            $categories = Category::where('name', 'like', '%{$keyword}%')->paginate(15);
+            $categories = Category::where('name', 'like', "%{$keyword}%")->paginate(15);
             $total = $categories->total();
         }else{
             $categories = Category::paginate(15);
